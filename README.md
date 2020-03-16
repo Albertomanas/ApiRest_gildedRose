@@ -133,6 +133,6 @@ Antes de proceder a la instalación se recomienda acceder al libro:
 
         5. (venv) $ pip install flask
 
-        6. (venv) $ pip freeze -r <Nombre del fichero de requirements>
+        6. (venv) $ pip install -r <Nombre del fichero de requirements>
 
         ```
