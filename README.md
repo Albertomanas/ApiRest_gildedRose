@@ -111,3 +111,28 @@
 5. Si quieres que esté disponible en la red local en la ip de tu máquina, ejecuta:
 
     `$ flask run --host 0.0.0.0`
+
+
+## Instalación previa del entorno virtual:
+
+Antes de proceder a la instalación se recomienda acceder al libro: 
+
+1. https://drive.google.com/drive/u/1/folders/11allIsUF8dqRFFlSBJ7E_r5AS7kgTvMP
+    - Hay que acceder al libro de Flask_web_development_subrayado.pdf
+
+2. Partiendo de la base que estamos en el libro de Flask:
+    - Windows: 
+        ``` bash
+        1. $ python3 -m venv virtual-environment-name
+
+        2. $ python -m venv venv
+
+        3. $ source venv\Scripts\activate
+
+        4.      (venv) $
+
+        5. (venv) $ pip install flask
+
+        6. (venv) $ pip freeze -r <Nombre del fichero de requirements>
+
+        ```
