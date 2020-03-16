@@ -127,7 +127,7 @@ Antes de proceder a la instalación se recomienda acceder al libro:
 
         2. $ python -m venv venv
 
-        3. $ source venv\Scripts\activate
+        3. $ venv\Scripts\activate
 
         4.      (venv) $
 
