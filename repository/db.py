@@ -10,7 +10,7 @@ client = MongoClient()
 # client = MongoClient('mongodb://localhost:27017/')
 
 # obteniendo una bbdd
-client.drop_database('ollivanders')
+client.drop_database('ollivanders1')
 # db = client['ollivanders']
 db = client.ollivanders
 
@@ -18,7 +18,7 @@ db = client.ollivanders
 collection = db['inventario']
 
 # mongoengine: how to connect to our instance of mongod:
-connect('ollivanders')
+connect('ollivanders1')
 
 
 # adding data
