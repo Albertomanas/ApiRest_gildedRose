@@ -15,7 +15,7 @@ button:hover {
 }
 
 iframe {
-	border: none !important;
+	border: none !important; 
 }
 
 form{
@@ -69,6 +69,16 @@ form input[type="reset"],
 
 }
 
+select {
+	width:180px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+    display:inline-block;
+
+}
 
 
 textarea{
