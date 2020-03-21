@@ -53,3 +53,44 @@ def getItem(itemName):
         abort(404, message="El item {} no existe, instroduzca de nuevo el nombre".format(itemName))
     return list(items)
 
+    #Obtener item, si éste item no coincide con el formato itemName, error 404
+
+@staticmethod
+def postItem(args):
+    db = get_db()
+    item = g.Item(name=args['name'])
+    item.sell_in = args['sell_in']
+    item.quality = args['quality']
+    item.save()
+
+@staticmethod
+def deleteItem(args):
+    db = get_db()
+    item = g.Item.objects(Q(name=args['name'])
+                            & Q(sell_in=args['sell_in'])
+                            & Q(quality=args['quality'])).first()
+    if not item:
+        abort(404, message="No existe el item")
+    else:
+        item.delete()
+
+@staticmethod
+@marshal_with(resource_fields)
+def filterQuality(itemQuality):
+    db = get_db()
+    items = g.Item.objects(quality=itemQuality)
+    return Service.check(items)
+
+
+@staticmethod
+@marshal_with(resource_fields)
+def filterSellIn(itemsSellIn):
+    db = get_db()
+    items = g.Item.objects(sell_in__lts=itemSellIn)
+    return Service.check(items)
+
+@staticmethod
+def check(items):
+    if not items:
+        abort(404, message="No existen items que satifagan el criterio")
+        return list(items)
