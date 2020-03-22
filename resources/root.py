@@ -1,5 +1,5 @@
 from flask_restful import Resource, Api
-from services.service import Service
+from services.service_resuelto import Service
 from repository.models import Item
 
 
