@@ -178,3 +178,14 @@
                          formulario.elements.sell_in.value,
                          formulario.elements.quality.value);
         }
+
+        /**
+         * Limpiar tabla
+         */
+
+        function cleanTable() {
+            //Limpieza de ID $("#X").Y("");
+            $("#NombreProducto").val("");
+            $("#NombreSellIn").val("");
+            $("#NombreQuality").val("");
+        }
