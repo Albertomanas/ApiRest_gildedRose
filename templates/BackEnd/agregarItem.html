@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>Ollivander's Shop</title>
+    <div align="center"><img src="{{ url_for('static', filename='img/olivlogo.png') }}" width="400" height="176"></div>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="Ollivander's Shop" content="">
-    <meta name="Alberto J. Miquel Calafell" content="">
+    <meta name="Proyecto Ollivanders API">
+    <meta name="Alberto J. y  Miquel Calafell">
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
 
     <title>Ollivander's Shop</title>
 
@@ -18,6 +20,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
 
 </head>
 
@@ -30,11 +35,11 @@
                     aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="#">Ollivander's Shop</a>
+                <a class="navbar-brand" href="index">Ollivander's Shop</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <form class="navbar-form navbar-right">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-dark" type="submit">Buscar</button>
                 </form>
             </div>
@@ -45,50 +50,38 @@
     <div class="jumbotron">
         <div class="container">
             <h2>Ollivander's Shop: Añadir producto</h2>
-        </div>
-
-        <form>
-            <div class="form-group">
-                <label for="NombreProducto">Producto</label>
-                <input type="text" class="form-control" id=""
-                    placeholder="Introduzca el nombre del producto">
-            </div>
-            <div class="form-group">
-                <label>Sell In</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Introduzca el Sell In">
+            <form id="FormularioAdd">
                 <div class="form-group">
-                    <label>Quality</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Introduzca la Quality">
+                    <label for="NombreProducto">Producto</label>
+                    <input type="text" class="form-control" id="NombreProducto"
+                        placeholder="Introduzca el nombre del producto" name="name" required />
                 </div>
-                <button type="submit" class="btn btn-dark">
-                    <a href="index">Submit</a>
-                </button>
-        </form>
+                <div class="form-group">
+                    <label for="NombreSellIn">Sell In</label>
+                    <input type="text" class="form-control" id="NombreSellIn" placeholder="Introduzca el Sell In"
+                        name="sell_in" required />
+                    <div class="form-group">
+                        <label for="NombreQuality">Quality</label>
+                        <input type="text" class="form-control" id="NombreQuality" placeholder="Introduzca la Quality"
+                            name="quality" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+                        autocomplete="off" onclick="addItem()">
+                        Agregar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+                        autocomplete="off" onclick="cleanTable()">
+                        Limpiar formulario
+                    </button>
+            </form>
+        </div>
     </div>
 
     <hr>
 
-    <footer>
+    <footer class="container text-center">
         <p>&copy; 2020 Ollivanders.</p>
     </footer>
-    </div>
-    <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
