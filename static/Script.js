@@ -1,46 +1,6 @@
-<<<<<<< HEAD:static/Script.js
-        // GET
-=======
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Olivanders</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="bonito.css">
-    <div align="center"><img src="img/olivlogo.png" width="500" height="220"></div>
-</head>
-
-<body>  
-    <form class="add-item">
-        <input type="text" name="name" placeholder="Item Name" required/>
-        <input type="text" name="sell_in" placeholder="Sell in" />
-        <input type="text" name="quality" placeholder="Quality" required />
-        <input type="submit" value="Añadir Item" />
-        <input type="reset" value="Reset" />
-        <input type="button" name="delete" value="Eliminar Item" />
-    </form>
-    <br >
-    <form class="filter-item">
-    <!--    <input id="itemName" type="text" name="name" placeholder="Item Name" />
-        <input type="text" name="sell_in" placeholder="Sell in" />
-        <input type="text" name="quality" placeholder="Quality" /> --> 
-        <input type="submit" value="Filtrar Item" />  
-        </form>
-
-        <button class="button button1" id="inventario">Inventario</button>
-        <button class="button button2" id="updateQuality">Update Quality</button>
-    
-        <ul id="itemList"></ul>
-        <ul id="itemsName"></ul>
-
-    <script>
-
 
         // GET del inventario
->>>>>>> Miquel:client-side-js/index.html
 
-    
         function inventario() {
 
             var miInit = { method: 'GET',
@@ -65,8 +25,8 @@
                 });
         }
 
-<<<<<<< HEAD:static/Script.js
-        // intentar cachear con la cabecera mirando network de chrome
+
+    // intentar cachear con la cabecera mirando network de chrome
 
         function itemsTable(json) {
             let contenido="";
@@ -77,52 +37,6 @@
                 });
             $("#structureTable").html(contenido);
         }
-
-=======
-                // La devolucion de la lista de Items
-                function logItems(items) {
-            const itemsList = document.querySelector('#itemList');
-            itemList.innerHTML = items.map((item, i) => {
-                return `
-                        <li>
-                            <p id="item${i}"> ${item.name}  
-                                            ${item.sell_in}  
-                                            ${item.quality}</p>
-                        </li>
-                        `;
-            }).join('');
-        }
-
-        
-        // GET del update quality
-        const inventButtons = document.querySelector('#updateQuality');
-        inventButtons.addEventListener("click", updateQuality);
-
-        function updateQuality() {
-
-            var myInit = { method: 'GET',
-                           mode: 'cors',
-                           // cambiarlo a force-cache => carga del disco
-                           cache: 'default' };
-
-
-            fetch('http://127.0.0.1:5000/update-quality', myInit)
-                .then((response) => {
-                    if(response.ok) {
-                        console.log("Response Status:", response.status);
-                        console.log("Reponse statuts text:", response.statusText);
-                        response.json().then((json) => logItems(json))
-                    } else {
-                        console.log("Response Status:", response.status);
-                        console.log("Reponse statuts text:", response.statusText);  
-                    }  
-                })
-                .catch((error) => {
-                    console.log(error.message);
-                });
-        }
-
->>>>>>> Miquel:client-side-js/index.html
 
         // POST
         // curl -d name="Conjured Mana Cake" -d sell_in=5 -d quality=8
@@ -169,8 +83,6 @@
                     console.log(error.message);
                 });
         }
-
-
 
         //  Creando función para filtrar items (sin funcionar)
         let formularios = document.querySelector('.filter-item');
