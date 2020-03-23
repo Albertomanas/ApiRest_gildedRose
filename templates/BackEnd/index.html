@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ollivander's Shop</title>
+    <div align="center"><img src="{{ url_for('static', filename='img/olivlogo.png') }}" width="400" height="176"></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Proyecto Ollivanders API">
+    <meta name="Alberto J. y  Miquel Calafell">
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
+
+    <title>Ollivander's Shop</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                </button>
+                <a class="navbar-brand" href="index">Ollivander's Shop</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Ollivander's Shop: Nuestro inventario</h2>
+        </div>
+
+        <div class="container">
+            <!-- Esto es la tabla -->
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="colgroup">Name</th>
+                            <th scope="colgroup">Sell In</th>
+                            <th scope="colgroup">Quality</th>
+                        </tr>
+                    </thead>
+                    <tbody id="structureTable">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <!--Aquí irán las dos funcionabilidades a parte que será añadir un item y actualizar un item-->
+                <h2>Funcionalidades:</h2>
+                <p>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info" onclick="inventario()">
+                            Listar Inventario
+                        </button>
+                    </div>
+                </p>
+                <p>
+                    <div class="dropdown">
+                        <a href="agregarItem">
+                            <button class="btn btn-info" type="button">
+                                Crear Item
+                            </button>
+                        </a>
+                    </div>
+                </p>
+                <p>
+                    <div class="dropdown">
+                        <a href="eliminarItem">
+                            <button class="btn btn-info" type="button">
+                                Actualizar calidad
+                            </button>
+                        </a>
+                    </div>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- /container -->
+
+    <footer class="container text-center">
+        <p id="copyright">&copy; 2020 Ollivanders, Inc.</p>
+    </footer>
+
+</body>
+
+</html>

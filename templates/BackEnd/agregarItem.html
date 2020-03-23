@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ollivander's Shop</title>
+    <div align="center"><img src="{{ url_for('static', filename='img/olivlogo.png') }}" width="400" height="176"></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Proyecto Ollivanders API">
+    <meta name="Alberto J. y  Miquel Calafell">
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
+
+    <title>Ollivander's Shop</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="index">Ollivander's Shop</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-dark" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Ollivander's Shop: Añadir producto</h2>
+            <form id="FormularioAdd">
+                <div class="form-group">
+                    <label for="NombreProducto">Producto</label>
+                    <input type="text" class="form-control" id="NombreProducto"
+                        placeholder="Introduzca el nombre del producto" name="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="NombreSellIn">Sell In</label>
+                    <input type="text" class="form-control" id="NombreSellIn" placeholder="Introduzca el Sell In"
+                        name="sell_in" required />
+                    <div class="form-group">
+                        <label for="NombreQuality">Quality</label>
+                        <input type="text" class="form-control" id="NombreQuality" placeholder="Introduzca la Quality"
+                            name="quality" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+                        autocomplete="off" onclick="addItem()">
+                        Agregar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+                        autocomplete="off" onclick="cleanTable()">
+                        Limpiar formulario
+                    </button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer class="container text-center">
+        <p>&copy; 2020 Ollivanders.</p>
+    </footer>
+</body>
+
+</html>

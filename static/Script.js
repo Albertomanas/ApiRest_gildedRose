@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>REST ejemplo</title>
-</head>
-
-<body>
-    <button id="inventario">inventario</button>
-
-    <ul id="itemList">
-        <li>Aqui los items...</li>
-    </ul>
-
-    <form class="add-item">
-        <input type="text" name="name" placeholder="Item Name" required/>
-        <input type="text" name="sell_in" placeholder="Sell in" />
-        <input type="text" name="quality" placeholder="Quality" required />
-        <input type="submit" value="Añadir Item" />
-        <input type="reset" value="Reset" />
-        <input type="button" name="delete" value="Eliminar Item" />
-    </form>
-
-    <script>
-
         // GET
 
-        const inventButton = document.querySelector('#inventario');
-        inventButton.addEventListener("click", inventario);
-
+    
         function inventario() {
 
             var miHeaders = new Headers();
@@ -45,7 +17,7 @@
                     if(response.ok) {
                         console.log("Response Status:", response.status);
                         console.log("Reponse statuts text:", response.statusText);
-                        response.json().then((json) => logItems(json))
+                        response.json().then((json) => itemsTable(json))
                     } else {
                         console.log("Response Status:", response.status);
                         console.log("Reponse statuts text:", response.statusText);  
@@ -58,18 +30,16 @@
 
         // intentar cachear con la cabecera mirando network de chrome
 
-        function logItems(items) {
-            const itemsList = document.querySelector('#itemList');
-            itemList.innerHTML = items.map((item, i) => {
-                return `
-                        <li>
-                            <p id="item${i}"> ${item.name}  
-                                            ${item.sell_in}  
-                                            ${item.quality}</p>
-                        </li>
-                        `;
-            }).join('');
+        function itemsTable(json) {
+            let contenido="";
+            $.each(json, function(index, item) {
+                contenido += "<tr><th scope='row'>" + item.name + "</th>" +
+                    "<td>" + item.sell_in + "</td>" +
+                    "<td>" + item.quality + "</td></tr>"
+                });
+            $("#structureTable").html(contenido);
         }
+
 
         // POST
         // curl -d name="Conjured Mana Cake" -d sell_in=5 -d quality=8
@@ -209,7 +179,13 @@
                          formulario.elements.quality.value);
         }
 
-    </script>
-</body>
+        /**
+         * Limpiar tabla
+         */
 
-</html>
+        function cleanTable() {
+            //Limpieza de ID $("#X").Y("");
+            $("#NombreProducto").val("");
+            $("#NombreSellIn").val("");
+            $("#NombreQuality").val("");
+        }
