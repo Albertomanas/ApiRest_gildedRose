@@ -125,7 +125,7 @@ Antes de proceder a la instalación se recomienda acceder al libro:
         ``` bash
         1. $ python3 -m venv virtual-environment-name
 
-        2. $ python -m venv venv
+        2. $ python3 -m venv venv
 
         3. $ venv\Scripts\activate
 
