@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ollivander's Shop</title>
+    <br > <br >
     <div align="center"><img src="{{ url_for('static', filename='img/olivlogo.png') }}" width="400" height="176"></div>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -53,14 +54,11 @@
             <form class="add-item">
 
                 <label>Producto</label>
-                <input type="text" class="form-control" id="name" placeholder="Introduzca el nombre del producto"
-                    name="name" />
+                <input type="text" class="form-control" id="name" placeholder="Introduzca el nombre del producto"/>
                 <label>Sell In</label>
-                <input type="text" class="form-control" id="sellin" placeholder="Introduzca el Sell In"
-                    name="sell_in" />
+                <input type="text" class="form-control" id="sell_in" placeholder="Introduzca el Sell In"/>
                 <label>Quality</label>
-                <input type="text" class="form-control" id="quality" placeholder="Introduzca la Quality"
-                    name="quality" />
+                <input type="text" class="form-control" id="quality" placeholder="Introduzca la Quality"/>
                 <br>
                 <button type="button" class="btn btn-info" onclick="inventario()" id="listInventory">Inventario</button>
                 <input type="submit" value="Añadir Item"/>
@@ -85,7 +83,135 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        let formulario = document.querySelector('.add-item');
+        formulario.addEventListener('submit', addItem);
 
+
+        function addItem(e) {
+            e.preventDefault();
+            // elementos del formulario en un array-like object:
+            // form.elements 
+            // pag 396 libro rhin
+
+            let data = { name: this.elements.name.value,
+                         // sellin => bad request, status 400
+                         // sin valor => mensaje del servidor en consola
+                         // en XHR and fetch: message: {sell_in: "sellIn required"}
+                         sell_in: this.elements.sell_in.value,
+                         quality: this.elements.quality.value};
+
+            fetch('http://127.0.0.1:5000/items', {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        console.log("Response OK Status:", response.status);
+                        console.log("Reponse OK status text:", response.statusText);
+                    } else {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+
+        formulario.delete.addEventListener('click', deleteItemPromise);
+
+        function deleteItem() {
+            // elementos del formulario en un array-like object:
+            // form.elements 
+            // pag 396 libro rhino
+            logForm();
+
+            let data = { name: formulario.elements.name.value,
+                         // sellin => bad request, status 400
+                         // sin valor => mensaje del servidor en consola
+                         // en XHR and fetch: message: {sell_in: "sellIn required"}
+                         sell_in: formulario.elements.sell_in.value,
+                         quality: formulario.elements.quality.value };
+
+            fetch('http://127.0.0.1:5000/items', {
+                method: 'DELETE',
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        console.log("Response OK Status:", response.status);
+                        console.log("Reponse OK status text:", response.statusText);
+                    } else {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+
+        // delete Item con promesas
+        
+        function deleteItemPromise() {
+            // elementos del formulario en un array-like object:
+            // form.elements 
+            // pag 396 libro rhino
+            logForm();
+
+            let data = { name: formulario.elements.name.value,
+                         // sellin => bad request, status 400
+                         // sin valor => mensaje del servidor en consola
+                         // en XHR and fetch: message: {sell_in: "sellIn required"}
+                         sell_in: formulario.elements.sell_in.value,
+                         quality: formulario.elements.quality.value };
+            
+            const promesa = new Promise((resolve, reject) => {
+                    
+                    fetch('http://127.0.0.1:5000/items', {
+                        method: 'DELETE',
+                        body: JSON.stringify(data), // data can be `string` or {object}!
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then((response) => {
+                        if (response.ok) {
+                            setTimeout(() => { resolve(response.statusText)}, 5000);
+                        } else {
+                            reject(response.statusText);
+                        }
+                    })
+                });
+            
+            promesa.then(statusText => console.log(`"Item eliminado: ${statusText}`))
+                   .then(() => inventario())
+                   .catch((statusText) => {
+                        console.log(`Item NO borrado: ${statusText}`);
+                    });
+
+            console.log("El código sigue sin esperar al setTimeout");              
+        }
+
+        
+        function logForm() {
+            // for sobre form.elements no sirve
+            // porque muestra buttons tb
+            let formulario = document.querySelector('.add-item');
+            console.log( formulario.elements.name.value,
+                         formulario.elements.sell_in.value,
+                         formulario.elements.quality.value);
+        }
+
+    </script> 
     <hr>
 
     <footer class="container text-center">
