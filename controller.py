@@ -17,16 +17,19 @@ from resources.sellin import SellIn
 
 from repository import db_atlas
 
-app = Flask(__name__)
+app = Flask(__name__, 
+  template_folder="templates")
+
 CORS(app)
 
 db_atlas.init_app(app)
 
-@app.route('/index', methods=['GET', 'POST'])
+@app.route("/")
 def Index():
-  return make_response(render_template('BackEnd/index.html'))
+  return make_response(render_template('BackEnd/index.html',
+                                        title='Ollivanders Shop.',))
 
-@app.route('/agregarItem', methods=['GET', 'POST'])
+@app.route('/agregarItem', methods=['GET', 'POST', 'PUT', 'UPDATE'])
 def AgregarItem():
   return make_response(render_template('BackEnd/agregarItem.html'))
 
@@ -34,10 +37,10 @@ def AgregarItem():
 def EliminarItem():
   return make_response(render_template('BackEnd/eliminarItem.html'))
 
+
 # API REST
 api = Api(app, catch_all_404s=True)
 
-api.add_resource(Root, '/')
 api.add_resource(Inventario, '/inventario')
 api.add_resource(UpdateQuality, '/update-quality')
 api.add_resource(Items, '/items/name/<itemName>', '/items')
