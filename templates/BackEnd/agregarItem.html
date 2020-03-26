@@ -50,29 +50,39 @@
     <div class="jumbotron">
         <div class="container">
             <h2>Ollivander's Shop: Añadir producto</h2>
-            <form id="FormularioAdd">
-                <div class="form-group">
-                    <label for="NombreProducto">Producto</label>
-                    <input type="text" class="form-control" id="NombreProducto"
-                        placeholder="Introduzca el nombre del producto" name="name" required />
-                </div>
-                <div class="form-group">
-                    <label for="NombreSellIn">Sell In</label>
-                    <input type="text" class="form-control" id="NombreSellIn" placeholder="Introduzca el Sell In"
-                        name="sell_in" required />
-                    <div class="form-group">
-                        <label for="NombreQuality">Quality</label>
-                        <input type="text" class="form-control" id="NombreQuality" placeholder="Introduzca la Quality"
-                            name="quality" required />
-                    </div>
-                    <button type="submit" class="btn btn-primary"onclick="addItem()">
-                        Agregar
-                    </button>
-                    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"
-                        autocomplete="off" onclick="cleanTable()">
-                        Limpiar formulario
-                    </button>
+            <form class="add-item">
+
+                <label>Producto</label>
+                <input type="text" class="form-control" id="name" placeholder="Introduzca el nombre del producto"
+                    name="name" />
+                <label>Sell In</label>
+                <input type="text" class="form-control" id="sellin" placeholder="Introduzca el Sell In"
+                    name="sell_in" />
+                <label>Quality</label>
+                <input type="text" class="form-control" id="quality" placeholder="Introduzca la Quality"
+                    name="quality" />
+                <br>
+                <button type="button" class="btn btn-info" onclick="inventario()" id="listInventory">Inventario</button>
+                <input type="submit" value="Añadir Item"/>
+                <input type="reset" value="Limpiar formulario"/>
+                <input type="button" value="Eliminar Item" name="delete"/>
+                
+
             </form>
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="colgroup">Name</th>
+                            <th scope="colgroup">Sell In</th>
+                            <th scope="colgroup">Quality</th>
+                        </tr>
+                    </thead>
+                    <tbody id="structureTable">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
