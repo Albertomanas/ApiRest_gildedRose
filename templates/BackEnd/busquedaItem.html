@@ -56,13 +56,13 @@
                 <label>Producto</label>
                 <input type="text" class="form-control" id="name" placeholder="Introduzca el nombre del producto" />
                 <label>Sell In</label>
-                <input type="text" class="form-control" id="sell_in" placeholder="Introduzca el Sell In" />
+                <input type="text" class="form-control" id="sellIn" placeholder="Introduzca el Sell In" />
                 <label>Quality</label>
                 <input type="text" class="form-control" id="quality" placeholder="Introduzca la Quality" />
                 <br>
-                <button type="button" class="btn btn-info" onclick="ItemName()" id="buttonName">Buscar por Nombre</button>
-                <button type="button" class="btn btn-info">Buscar por Sell In</button>
-                <button type="button" class="btn btn-info">Buscar por Quality</button>
+                <button type="button" class="btn btn-info" onclick="updateTableName()" id="buttonName">Buscar por Nombre</button>
+                <button type="button" class="btn btn-info" onclick="updateTableSellIn()" id="buttonSellIn">Buscar por Sell In</button>
+                <button type="button" class="btn btn-info" onclick="updateTableQuality()" id="buttonQuality">Buscar por Quality</button>
                 <button type="reset" class="btn btn-info">Limpiar formulario</button>
             </form>
             <div class="col-md-8">
@@ -85,9 +85,9 @@
         // BÚSQUEDA POR NOMBRE
 
         const botonNombre = document.querySelector('#buttonName');
-        botonNombre.addEventListener("click", name)
+        botonNombre.addEventListener("click", Name)
 
-        function name() {
+        function Name() {
             var myHeaders = new Headers();
 
             var myInit = { method: 'GET',
@@ -101,7 +101,7 @@
                     if(response.ok) {
                         console.log("Response Status:", response.status);
                         console.log("Reponse statuts text:", response.statusText);
-                        response.json().then((json) => ItemName(json))
+                        response.json().then((json) => updateTableName(json))
                     } else {
                         console.log("Response Status:", response.status);
                         console.log("Reponse statuts text:", response.statusText);  
@@ -112,7 +112,7 @@
                 });
         }
 
-        function ItemName(json) {
+        function updateTableName(json) {
             let contenido="";
             $.each(json, function(index, item) {
                 contenido += "<tr><th scope='row'>" + item.name + "</th>" +
@@ -121,6 +121,88 @@
                 });
             $("#structureTable").html(contenido);
         }
+
+        // FILTRAR POR SELL IN
+
+        const botonSellIn = document.querySelector('#buttonSellIn');
+        botonSellIn.addEventListener("click", SellIn)
+
+        function SellIn() {
+            var myHeaders = new Headers();
+
+            var myInit = { method: 'GET',
+                           mode: 'cors',
+                           headers: myHeaders,
+                           cache: 'default' };
+
+            let varSellIn = document.getElementById("sellIn").value;
+            fetch('http://127.0.0.1:5000/items/sellin/' + varSellIn, myInit)
+                .then((response) => {
+                    if(response.ok) {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);
+                        response.json().then((json) => updateTableSellIn(json))
+                    } else {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);  
+                    }  
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+
+        function updateTableSellIn(json) {
+            let contenido="";
+            $.each(json, function(index, item) {
+                contenido += "<tr><td>" + item.name + "</td>" +
+                    "<th scope='row'>" + item.sell_in + "</th>" +
+                    "<td>" + item.quality + "</td></tr>"
+                });
+            $("#structureTable").html(contenido);
+        }
+        
+
+        // FILTRAR POR QUALITY
+        const botonQuality = document.querySelector('#buttonQuality');
+        botonQuality.addEventListener("click", Quality)
+
+        function Quality() {
+            var myHeaders = new Headers();
+
+            var myInit = { method: 'GET',
+                           mode: 'cors',
+                           headers: myHeaders,
+                           cache: 'default' };
+
+            let varQuality = document.getElementById("quality").value;
+            fetch('http://127.0.0.1:5000/items/quality/' + varQuality, myInit)
+                .then((response) => {
+                    if(response.ok) {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);
+                        response.json().then((json) => updateTableQuality(json))
+                    } else {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);  
+                    }  
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+
+        function updateTableQuality(json) {
+            let contenido="";
+            $.each(json, function(index, item) {
+                contenido += "<tr><td>" + item.name + "</td>" +
+                    "<td>" + item.sell_in + "</td>" +
+                    "<th scope='row'>" + item.quality + "</th></tr>"
+                });
+            $("#structureTable").html(contenido);
+        }
+
+
 
     </script>
 
