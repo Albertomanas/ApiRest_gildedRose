@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ollivander's Shop</title>
+    <br> <br>
+    <div align="center"><img src="{{ url_for('static', filename='img/olivlogo.png') }}" width="400" height="176"></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Proyecto Ollivanders API">
+    <meta name="Alberto J. y  Miquel Calafell">
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
+
+    <title>Ollivander's Shop</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="/">Ollivander's Shop</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-dark" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Ollivander's Shop: Búsqueda personalizada</h2>
+            <form class="add-item">
+
+                <label>Producto</label>
+                <input type="text" class="form-control" id="name" placeholder="Introduzca el nombre del producto" />
+                <label>Sell In</label>
+                <input type="text" class="form-control" id="sell_in" placeholder="Introduzca el Sell In" />
+                <label>Quality</label>
+                <input type="text" class="form-control" id="quality" placeholder="Introduzca la Quality" />
+                <br>
+                <button type="button" class="btn btn-info" onclick="ItemName()" id="buttonName">Buscar por Nombre</button>
+                <button type="button" class="btn btn-info">Buscar por Sell In</button>
+                <button type="button" class="btn btn-info">Buscar por Quality</button>
+                <button type="reset" class="btn btn-info">Limpiar formulario</button>
+            </form>
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="colgroup">Name</th>
+                            <th scope="colgroup">Sell In</th>
+                            <th scope="colgroup">Quality</th>
+                        </tr>
+                    </thead>
+                    <tbody id="structureTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        // BÚSQUEDA POR NOMBRE
+
+        const botonNombre = document.querySelector('#buttonName');
+        botonNombre.addEventListener("click", name)
+
+        function name() {
+            var myHeaders = new Headers();
+
+            var myInit = { method: 'GET',
+                           mode: 'cors',
+                           headers: myHeaders,
+                           cache: 'default' };
+
+            let varName = document.getElementById("name").value;
+            fetch('http://127.0.0.1:5000/items/name/' + varName, myInit)
+                .then((response) => {
+                    if(response.ok) {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);
+                        response.json().then((json) => ItemName(json))
+                    } else {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);  
+                    }  
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+
+        function ItemName(json) {
+            let contenido="";
+            $.each(json, function(index, item) {
+                contenido += "<tr><th scope='row'>" + item.name + "</th>" +
+                    "<td>" + item.sell_in + "</td>" +
+                    "<td>" + item.quality + "</td></tr>"
+                });
+            $("#structureTable").html(contenido);
+        }
+
+    </script>
+
+    <hr>
+
+    <footer class="container text-center">
+        <p>&copy; 2020 Ollivanders.</p>
+    </footer>
+</body>
+
+</html>
