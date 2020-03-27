@@ -36,7 +36,7 @@
                     aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="index">Ollivander's Shop</a>
+                <a class="navbar-brand" href="/">Ollivander's Shop</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <form class="navbar-form navbar-right">
@@ -61,10 +61,9 @@
                 <input type="text" class="form-control" id="quality" placeholder="Introduzca la Quality"/>
                 <br>
                 <button type="button" class="btn btn-info" onclick="inventario()" id="listInventory">Inventario</button>
-                <input type="submit" value="Añadir Item"/>
-                <input type="reset" value="Limpiar formulario"/>
-                <input type="button" value="Eliminar Item" name="delete"/>
-                
+                <button type="submit" class="btn btn-info" onclick="addItem()">Añadir Item</button>
+                <button type="reset" class="btn btn-info">Limpiar formulario</button>
+                <button type="button" name="delete" class="btn btn-danger">Eliminar Item</button>                
 
             </form>
             <div class="col-md-8">
