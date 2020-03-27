@@ -28,15 +28,13 @@ db_atlas.init_app(app)
 def Index():
     return make_response(render_template('BackEnd/index.html', title='Ollivanders Shop.',))
 
-
 @app.route('/agregarItem', methods=['GET', 'POST', 'PUT', 'UPDATE', 'DELETE'])
 def AgregarItem():
     return make_response(render_template('BackEnd/agregarItem.html'))
 
-
-@app.route('/eliminarItem', methods=['GET', 'POST'])
-def EliminarItem():
-    return make_response(render_template('BackEnd/eliminarItem.html'))
+@app.route('/busquedaItem', methods=['GET', 'POST', 'PUT', 'UPDATE'])
+def BuscarItem():
+    return make_response(render_template('BackEnd/busquedaItem.html'))
 
 
 # API REST
