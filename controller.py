@@ -28,9 +28,9 @@ db_atlas.init_app(app)
 def Index():
     return make_response(render_template('BackEnd/index.html', title='Ollivanders Shop.',))
 
-@app.route('/agregarItem', methods=['GET', 'POST', 'PUT', 'UPDATE', 'DELETE'])
+@app.route('/formAddDel', methods=['GET', 'POST', 'PUT', 'UPDATE', 'DELETE'])
 def AgregarItem():
-    return make_response(render_template('BackEnd/agregarItem.html'))
+    return make_response(render_template('BackEnd/formAddDel.html'))
 
 @app.route('/busquedaItem', methods=['GET', 'POST', 'PUT', 'UPDATE'])
 def BuscarItem():
