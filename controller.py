@@ -29,7 +29,7 @@ def Index():
     return make_response(render_template('BackEnd/index.html', title='Ollivanders Shop.',))
 
 @app.route('/formAddDel', methods=['GET', 'POST', 'PUT', 'UPDATE', 'DELETE'])
-def AgregarItem():
+def FormularioItems():
     return make_response(render_template('BackEnd/formAddDel.html'))
 
 @app.route('/busquedaItem', methods=['GET', 'POST', 'PUT', 'UPDATE'])
